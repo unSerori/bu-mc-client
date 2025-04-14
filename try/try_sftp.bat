@@ -1,4 +1,4 @@
 ls
 cd saves
-put memo.md
+put put_file
 bye

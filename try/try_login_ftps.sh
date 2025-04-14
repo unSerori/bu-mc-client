@@ -2,7 +2,7 @@
 
 # login_ftpsでの投稿
 
-source .env
+source ../.env
 
 # TODO: デバッグ消す
 lftp -d << EOF
@@ -14,10 +14,8 @@ set ftp:ssl-protect-data true
 set ftp:ssl-protect-fxp true
 set ssl:check-hostname false
 set ssl:verify-certificate false
-set ftp:use-site-utime no
-open -u anonymous, ftp://${SERVER_IP}
-ls
+open -u ${USER_NAME},${USER_PASS} ftp://${SERVER_IP}
 cd saves
-put memo.md
+put put_file
 close
 EOF
