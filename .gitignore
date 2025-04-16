@@ -58,6 +58,7 @@ memo.md
 
 ## Others items
 key/*
+dir_list.yml
 
 # empty directory
 !.gitignore
