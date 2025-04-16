@@ -11,28 +11,27 @@ cd "$sh_dir" || {
 }
 source ../.env
 
-# TODO: アンコメント
-# # 必要なツールをインストール
-# ssh -V &> /dev/null # msgは破棄
-# if [ $? -ne 0 ]; then
-#     echo "Started installing the tool because I couldn't find it..."
-#     apt-get install -y openssh-client
-# else
-#     echo "Installed: ssh"
-# fi
+# 必要なツールをインストール
+ssh -V &> /dev/null # msgは破棄
+if [ $? -ne 0 ]; then
+    echo "Started installing the tool because I couldn't find it..."
+    apt-get install -y openssh-client
+else
+    echo "Installed: ssh"
+fi
 
 # buスクリプトをcronで提示実行
 
 # 時刻
-EXE_MIN="31"
-EXE_H="00"
+EXE_MIN="31" # 00
+EXE_H="00" # 04
 EXE_D="*"
 EXE_MON="*"
 EXE_DOW="*" # *
 TIME="${EXE_MIN} ${EXE_H} ${EXE_D} ${EXE_MON} ${EXE_DOW}" # 分 時 日 月 曜日
 
 # ファイル
-TARGET_SCRIPT="bash $(pwd)/try_cron_task.sh /home/unserori/bu-mc-client/"
+TARGET_SCRIPT="bash $(pwd)/bu.sh"
 
 # 登録済みでないなら登録
 cron_job="${TIME} ${TARGET_SCRIPT}"
