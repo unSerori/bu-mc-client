@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# CDに移動&初期化
-sh_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # 実行場所を相対パスで取得し、そこにサブシェルで移動、pwdで取得
-cd "$sh_dir" || {
-    echo "Failure CD command."
-    exit 1
-}
-source ../.env
+source ./init.sh "../.env"
 
 declare -A bu_dir
 while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのcharで区切ることになる、だから':'一文字で区切り空白を削除している
