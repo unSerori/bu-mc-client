@@ -18,7 +18,8 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
   echo "key: $sv_world_name"
   echo "value: $dir"
 
-  # TODO: ファイルを圧縮して
+  # ファイルを圧縮して
+  eval "${COMPRESS_CMD}"
   
   # TODO: FTP送信
 
