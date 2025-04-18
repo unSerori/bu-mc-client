@@ -4,7 +4,8 @@
 
 source "$(dirname ${0})/init.sh" "../.env"
 
-# TODO: コンテナの停止
+# コンテナの停止
+bash "${PAUSE_CTR_SCR}"
 
 declare -A bu_dir
 while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのcharで区切ることになる、だから':'一文字で区切り空白を削除している
