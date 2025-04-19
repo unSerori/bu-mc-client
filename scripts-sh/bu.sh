@@ -18,9 +18,17 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
   echo "key: $sv_world_name"
   echo "value: $dir"
 
-  # ファイルを圧縮して
+  # sv_worldを含めるのか問題 
+  compress_file_name="${sv_world_name}_$(date +%Y%m%d%H%M%S).7z"
+
+  # ファイルを圧縮して、
+  # TODO: temp dir
+  # TODO: switch
+  echo sv_world_name: $sv_world_name
+  echo compress_file_name: $compress_file_name
+  echo COMPRESS_CMD: $COMPRESS_CMD
   eval "${COMPRESS_CMD}"
   
-  # TODO: FTP送信
-
+  # FTP送信
+  ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${compress_file_name}"
 done < "../dir_list.yml"

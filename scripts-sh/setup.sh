@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # バックアップスケジュールを登録
-# sudo権限？で実行
+# sudo権限で実行
 
 # CDに移動&初期化
 sh_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # 実行場所を相対パスで取得し、そこにサブシェルで移動、pwdで取得
@@ -12,18 +12,25 @@ cd "$sh_dir" || {
 source ../.env
 
 # 必要なツールをインストール
-ssh -V &> /dev/null # msgは破棄
+ssh -V &> /dev/null # ssh
 if [ $? -ne 0 ]; then
     echo "Started installing the tool because I couldn't find it..."
     apt-get install -y openssh-client
 else
     echo "Installed: ssh"
 fi
+7z &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "Started installing the tool because I couldn't find it..."
+    apt-get install -y p7zip-full
+else
+    echo "Installed: 7z"
+fi
 
 # buスクリプトをcronで提示実行
 
 # 時刻
-EXE_MIN="31" # 00
+EXE_MIN="30" # 00
 EXE_H="00" # 04
 EXE_D="*"
 EXE_MON="*"
