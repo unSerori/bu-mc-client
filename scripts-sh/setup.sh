@@ -30,16 +30,15 @@ fi
 # buスクリプトをcronで提示実行
 
 # 時刻
-EXE_MIN="59" # 00
-EXE_H="16" # 04
+EXE_MIN="18" # 00
+EXE_H="20" # 04
 EXE_D="*"
 EXE_MON="*"
 EXE_DOW="*" # *
 TIME="${EXE_MIN} ${EXE_H} ${EXE_D} ${EXE_MON} ${EXE_DOW}" # 分 時 日 月 曜日
 
 # ファイル
-TARGET_SCRIPT="cd $(pwd) && bash $(pwd)/scrs/set_tailscale_dns.sh && bash $(pwd)/bu.sh"
-#TARGET_SCRIPT="bash $(pwd)/bu.sh"
+TARGET_SCRIPT="cd $(pwd) && bash $(pwd)/scrs/set_tailscale_dns.sh && sudo -u $USER_NAME bash $(pwd)/bu.sh"
 
 # 登録済みでないなら登録
 cron_job="${TIME} ${TARGET_SCRIPT}"
