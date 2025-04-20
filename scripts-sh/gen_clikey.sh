@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # sshkeyを作成する
+# プロジェクトルート（:.envのある場所）からの実行を想定
 
 source .env
 

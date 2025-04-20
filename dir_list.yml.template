@@ -1,0 +1,7 @@
+# バックアップするディレクトリ一覧
+# キーは「サーバ名_ワールド名」、バリューは「ディレクトリ」
+# バリューは""で囲んでも動くことを確認
+
+mc-ryodan_lobby: /home/unserori/mc-ryodan/services/lobby/share/world/
+mc-ryodan_first: /home/unserori/mc-ryodan/services/first/share/world/
+mc-ryodan_second: /home/unserori/mc-ryodan/services/second/share/world/

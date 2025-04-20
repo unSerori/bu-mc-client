@@ -57,7 +57,9 @@ memo.md
 # upload directory
 
 ## Others items
-key/*
+**/key/*
+dir_list.yml
+**/temp/*
 
 # empty directory
 !.gitignore
