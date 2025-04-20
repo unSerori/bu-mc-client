@@ -3,7 +3,7 @@
 # 指定されたデータをバックアップする
 
 source "$(dirname ${0})/init.sh" "../.env"
-source compress.sh
+source ./funcs/compress.sh
 
 mkdir -p "${LOG_DIR}" "../temp"
 
@@ -29,7 +29,7 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
     echo "compress true...ext: $ext" >> "${OUT_LOG_PATH}"
 
     # FTP送信
-    ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
+    ./scrs/put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
 
     # TODO: temp内削除
 
