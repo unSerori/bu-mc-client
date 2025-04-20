@@ -26,14 +26,18 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
 
   # ファイルを圧縮して、 TODO: ()
   # if ext=$(compress_dir "${fn_without_ext}" "$dir"); then
-  compress_dir "${fn_without_ext}" "$dir"
-  
-  # TODO: 拡張子
-  ext="7z"
-  
-  # FTP送信
-  ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
+  ext=$(compress_dir "${fn_without_ext}" "$dir")
+  if [ $? -eq 0 ]; then
+    echo true
+    echo "ext: $ext"
 
-  # TODO: temp内削除
+    # FTP送信
+    ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
 
+    # TODO: temp内削除
+
+  else
+    echo false
+    echo "ext: $ext"
+  fi  
 done < "../dir_list.yml"
