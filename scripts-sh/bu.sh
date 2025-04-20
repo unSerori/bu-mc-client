@@ -3,6 +3,9 @@
 # 指定されたデータをバックアップする
 
 source "$(dirname ${0})/init.sh" "../.env"
+source compress.sh
+
+mkdir -p "${LOG_DIR}" "../temp"
 
 # コンテナの停止
 bash "${PAUSE_CTR_SCR}"
@@ -18,17 +21,19 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
   echo "key: $sv_world_name"
   echo "value: $dir"
 
-  # sv_worldを含めるのか問題 
-  compress_file_name="${sv_world_name}_$(date +%Y%m%d%H%M%S).7z"
+  date="$(date +%Y%m%d%H%M%S)"
+  fn_without_ext="${sv_world_name}_${date}" # アップロード先はディレクトリが切られているのに、sv_worldをファイル名に含める必要があるのか問題
 
-  # ファイルを圧縮して、
-  # TODO: temp dir
-  # TODO: switch
-  echo sv_world_name: $sv_world_name
-  echo compress_file_name: $compress_file_name
-  echo COMPRESS_CMD: $COMPRESS_CMD
-  eval "${COMPRESS_CMD}"
+  # ファイルを圧縮して、 TODO: ()
+  # if ext=$(compress_dir "${fn_without_ext}" "$dir"); then
+  compress_dir "${fn_without_ext}" "$dir"
+  
+  # TODO: 拡張子
+  ext="7z"
   
   # FTP送信
-  ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${compress_file_name}"
+  ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
+
+  # TODO: temp内削除
+
 done < "../dir_list.yml"
