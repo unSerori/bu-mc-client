@@ -6,6 +6,7 @@ source "$(dirname ${0})/init.sh" "../.env"
 source ./funcs/compress.sh
 
 mkdir -p "${LOG_DIR}" "../temp"
+rm -f "../temp/"*
 
 # コンテナの停止
 bash "${PAUSE_CTR_SCR}"
