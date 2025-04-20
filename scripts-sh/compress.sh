@@ -12,11 +12,8 @@ compress_dir() {
   local o_fn_without_ext="${1}"
   local dir="${2}"
 
-  local wd="$(pwd)"
-  local o_dir="${wd}/../temp/"
+  local o_dir="${SCR_BS_DIR}/../temp/"
   local o_path="${o_dir}${o_fn_without_ext}"
-  local OUT_LOG_PATH="${wd}/${LOG_DIR}${OUT_LOG_FILE}"
-  local ERR_LOG_PATH="${wd}/${LOG_DIR}${ERR_LOG_FILE}"
 
   # 圧縮率が高いと思われる方法順で圧縮を試みる
   {  

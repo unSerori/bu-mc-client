@@ -14,3 +14,7 @@ cd "$sh_dir" || {
     exit 1
 }
 source ${1:-./.env}
+
+SCR_BS_DIR="$(pwd)" # script base dir
+OUT_LOG_PATH="${SCR_BS_DIR}/${LOG_DIR}${OUT_LOG_FILE}"
+ERR_LOG_PATH="${SCR_BS_DIR}/${LOG_DIR}${ERR_LOG_FILE}"
