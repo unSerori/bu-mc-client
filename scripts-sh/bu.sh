@@ -24,10 +24,8 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
   date="$(date +%Y%m%d%H%M%S)"
   fn_without_ext="${sv_world_name}_${date}" # アップロード先はディレクトリが切られているのに、sv_worldをファイル名に含める必要があるのか問題
 
-  # ファイルを圧縮して、 TODO: ()
-  # if ext=$(compress_dir "${fn_without_ext}" "$dir"); then
-  ext=$(compress_dir "${fn_without_ext}" "$dir")
-  if [ $? -eq 0 ]; then
+  # ファイルを圧縮して、
+  if ext=$(compress_dir "${fn_without_ext}" "$dir"); then
     echo true
     echo "ext: $ext"
 
@@ -40,4 +38,19 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
     echo false
     echo "ext: $ext"
   fi  
+
+  # ext=$(compress_dir "${fn_without_ext}" "$dir")
+  # if [ $? -eq 0 ]; then
+  #   echo true
+  #   echo "ext: $ext"
+
+  #   # FTP送信
+  #   ./put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
+
+  #   # TODO: temp内削除
+
+  # else
+  #   echo false
+  #   echo "ext: $ext"
+  # fi  
 done < "../dir_list.yml"
