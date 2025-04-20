@@ -30,7 +30,7 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
     echo "compress true...ext: $ext" >> "${OUT_LOG_PATH}"
 
     # FTP送信
-    ./scrs/put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
+    ./scrs/put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH"
 
     # temp内削除
     rm "../temp/${fn_without_ext}.${ext}"
