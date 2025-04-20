@@ -25,15 +25,15 @@ compress_dir() {
     echo "Trying compression methods in order of expected compression ratio..."
   } >> $OUT_LOG_PATH
   (
-    failtest7z a -mx=9 "${o_path}.7z" "${dir}" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
+    7z a -mx=9 "${o_path}.7z" "${dir}" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
     echo 7z
   ) && return 0 || ( # サブシェルなので`cd "${wd}"`で戻ってくる必要がない
     cd "$(dirname "${dir}")" && \
-    failtesttar -czvf "${o_path}.tar.gz" "$(basename "${dir}")" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
+    tar -czvf "${o_path}.tar.gz" "$(basename "${dir}")" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
     echo tar.gz
   ) && return 0 || (
     cd "$(dirname "${dir}")" && \
-    failtestzip -r -9 "${o_path}.zip" "$(basename "${dir}")" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
+    zip -r -9 "${o_path}.zip" "$(basename "${dir}")" >> "$OUT_LOG_PATH" 2>> "$ERR_LOG_PATH" && \
     echo zip
   ) && return 0 || (
     {
