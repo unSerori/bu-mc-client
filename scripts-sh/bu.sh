@@ -31,8 +31,8 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
     # FTP送信
     ./scrs/put_sftp.sh $BU_SV_PORT "${SERVER_IP}" "${sv_world_name}" "${fn_without_ext}.${ext}"
 
-    # TODO: temp内削除
-
+    # temp内削除
+    rm "../temp/${fn_without_ext}.${ext}"
   else
     echo "compress false" >> "${ERR_LOG_PATH}"
   fi
