@@ -24,10 +24,10 @@ fi
 # buスクリプトをcronで提示実行
 
 # 時刻
-EXE_MIN="18" # 00
-EXE_H="20" # 04
-EXE_D="*"
-EXE_MON="*"
+EXE_MIN="00" # 00
+EXE_H="04" # 04
+EXE_D="*" # *
+EXE_MON="*" # *
 EXE_DOW="*" # *
 TIME="${EXE_MIN} ${EXE_H} ${EXE_D} ${EXE_MON} ${EXE_DOW}" # 分 時 日 月 曜日
 
