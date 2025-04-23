@@ -34,4 +34,5 @@ debian12.9
     ```
 
 3. `git clone git@github.com:unSerori/bu-mc.git`でとってくる
-4. `sudo bash setup.sh`を実行（TODO: sudo権限が必要）
+4. `bash ./scripts-sh/gen_clikey.sh`でキーペアを作成し、公開鍵を[サーバ](https://github.com/unSerori/bu-mc)の`./services/sftp/share/authorized_keys`になければ作成して追記
+5. `sudo bash setup.sh`を実行（TODO: sudo権限が必要）
