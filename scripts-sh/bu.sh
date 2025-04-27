@@ -38,3 +38,6 @@ while IFS=':' read -r key value; do # IFSで': 'とするとそれぞれのchar�
     echo "compress false" >> "${ERR_LOG_PATH}"
   fi
 done < "../dir_list.yml"
+
+# コンテナの再開
+bash "${RESUME_CTR_SCR}"
