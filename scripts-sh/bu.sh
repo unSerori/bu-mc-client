@@ -11,7 +11,6 @@ rm -f "../temp/"*
 # コンテナの停止
 bash "${PAUSE_CTR_SCR}"
 
-declare -A bu_dir
 while IFS=':' read -r key value; do          # IFSで': 'とするとそれぞれのcharで区切ることになる、だから':'一文字で区切り空白を削除している
   [[ "$key" =~ ^[[:space:]]*# ]] && continue # インデント付きコメントに対応するため、空白が0文字以上かつ#が続くものを対象とする
   [[ -z "$key" ]] && continue
